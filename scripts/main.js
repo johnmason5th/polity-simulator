@@ -1,4 +1,5 @@
 setGamespeed(3);
+zoom(1.8);
 
 function simulationLoop() {
 	if (!simulationPaused)
