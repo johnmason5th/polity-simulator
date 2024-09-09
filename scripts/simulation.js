@@ -51,7 +51,7 @@ function updateSim() {
 }
 
 var simulationPaused = false;
-var simulationSpeedMs = 1000;
+var simulationSpeedMs;
 function setGamespeed(gamespeed) {
 	if (gamespeed == 1) {
 		simulationSpeedMs = 500;

@@ -1,4 +1,4 @@
-setGamespeed(1);
+setGamespeed(3);
 
 function simulationLoop() {
 	if (!simulationPaused)
