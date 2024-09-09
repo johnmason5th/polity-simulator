@@ -1,0 +1,95 @@
+==Current Project==
+Restructure Code
+
+==Next Projects==
+- Remembering borders before wars
+1.Add GUI system for player
+	- First step: button for cursor mode to take control of a polity
+2. Allow player to control a polity
+	Controllable aspects: 
+		-	war declaration and peace
+	Future control: army movement, army strength, taxation
+How to make gameplay more interesting:
+3. Make an army mechanic
+4. Make conquest objectives lucrative and centralized. Centers of power
+
+==More Ideas==
+- Improve revolt system
+-Make warfare more deterministic
+	- Add resources to the game. Tax from tiles
+	- Add development of tiles to the game. Determines how much tax a tile gives a polity
+	- Tax determines the size of polity armies. The more taxes, the bigger an army can be
+	- Create armies which polities can control
+- Make distinct centers of power, as conquest objectives and to make warfare faster and simpler
+- Should limit size of province polities. Independent polities can conquer other polities, but their core land should be limited in size
+	- This will require remembering borders before wars started. Once a war ends, occupied land can be returned to, added to, or create a new vassal
+- Create a system of occupation and remembering borders before wars.
+- Simulate raiding
+
+==Fix==
+
+==Improve==
+-Vassals
+  -Implement levels of control over vassals.
+    Right to wage war(all but with liege, only external, none), amount of tribute(resources,manpower), ability to seize land
+  -Allow lieges to attack from vassal land.
+  -When lieges wage war and conquer land, land should go to the attacker tile (vassal or liege).
+  -Controlling vassals should also be encouraged for lieges. Make it cheaper to control land that is controlled by a vassal.
+  -Lieges should be able to manage their vassals later.
+-Polity Decline
+  -Currently, push factor for overextention is only complete disintegration. Rather than having it so extreme, push factor should be in conquest. The bigger polity is when taking land, the harder it should get to take more land.
+  -Rather than cause polities to disintegrate into anarchy, have them collapse in more natural ways. For example, loosely controlled provinces breaking off, fracturing through usurpers or gavelkind, invasions breaking the polity apart, etc.
+-Spread of Civilization
+  -Currently represented with ultsoc just increasing in random tiles.
+  -Should instead represent in a more complex way. Should be influenced by amount of warfare, biomes, trade, etc.
+  -Effects of civilization should be better. Currently just determines the initial power of a new polity based on the ultsoc of its capital.
+-Warfare
+  -Warfare should require resources and influence and be influenced by the ability to extract the resources from the realm. Ultsoc should represent the ability to efficiently use the resources the polity controls.
+    For example, Qing China was extremely materially wealthy, but was defeated by colonial European powers. Most likely the Europeans were more efficient at using the resources they had available to them, through extraction and secondary industries.
+  -Warfare should also change so that when a war starts, original boundaries are recorded. When a war is concluded, through surrender or capitulation, borders are changed. Also need to modify graphics to represent borders better. De-facto and de-jure control. De-facto will be represented by the colors. de-jure will be represented by the original boundaries of the countries before the war.
+  -When making simulator playable, should represent war with battles and armies rather than a massive frontline. Take inspiration from Paradox games. Warfare should be deterministic, basing it on manpower, military tech, finance, terrain, generals, etc.
+  -Make fog of war more realistic, such as a weekly update on army locations and human error in locating armies. Maybe also make map that player can see develop depending on technology of polity. Mapping other lands, distance accuracy, etc.
+-Miscellaneous
+  -Maybe add population, wealth, culture. The bigger the population, the stronger the armies can be. Wealth can also be used to do diplomacy, such as tribute. The wealthier the state, the more attractive it should be to attack. Ultsoc will be the institutions that can extract from their resources better.
+  -Have different forms of warfare. Rather than just conquest, also add raids.
+  -Make wars start and end distinctly rather than a basic truce; have warfare more dynamic.
+
+-Optimizing Chance Calculation
+  -Rather than calculating chance for each and every polity, randomly choose a percentage of the polities that would roughly equal the chance. This is how chance in real life works as well.
+  -For example, if there are many balloons and every balloon's chance of popping is 50%, then roughly 50% of all balloons will pop. Instead of calculating the chance of every balloon, randomly choose 50% of balloons to pop.
+  -This is also more efficient the lower the chance is. A low chance means the majority of chance calculations do nothing. So instead of calculating multiple times to only cause a fraction of change, replicate the behavior of chance calculations once and make change accordingly.
+-Calculating exclusively at borders
+  -Most calculations occur at borders of polities. Could speed up simulation by looping through list of only border tiles and checking and calculating those, rather than looping through every polity tile.
+  -Will need a way of keeping track of border tiles. This should be all that's needed, and then the list of all tiles can be replaced with the list of border tiles for calculating war and such.
+
+
+==Add==
+<User Interface>
+-User Polity Control
+  -First be able to select a country to control
+  -Ability to control diplomacy. Eventually, make game intricate enough to be a management game.
+  -Will also need to make most sim mechanics more deterministic, less random-based, in order to make game more fun
+  -Keep battles slightly chance-based, but make it reasonably deterministic. Allow player to recognize power of enemy polity, like manpower, military tech, finance, etc.
+    -Should simulate armies rather than a front line. For most of history, wars were decided in battles, and not a massive frontline.
+    -Armies could be raised at the capital tile, and recruits could be added at other large cities. Armies should be able to siege territory, and change depending on military technology. Siege tech as well as defense tech.
+    -Also have warscore to make course of war more understandable. Make warscore and desire to end the war more realistic than Paradox games. Also make war more realistic in general, such as shorter sieges rather than months-long sieges in Paradox games.
+-Map Modes
+  Currently two weird separate maps: Political and Civilization. Be able to swap between maps on same screen.
+
+<Simulation>
+-Nomadic Polities
+  May have to modify underlying code to implement nomads. Nomads will be more mobile than sedentary polities. Maybe allow them to pass over sedentary polities, especially small ones.
+-Agriculture Spread, civilization spread
+-Dynasties. To make diplomacy more complex
+-Culture
+  Represent culture similar to FWHS. Should be dynamic. Maybe also have simulation automatically generalize cultures and boundaries for player, culture map creates and shows borders similar to political map.
+-Alliances
+  Add to polities the ability to create allies.
+
+==Added==
+-Biome Map
+-Polities
+-War and Peace
+-Basic Civilization Development
+-Border drawing
+-Vassalization

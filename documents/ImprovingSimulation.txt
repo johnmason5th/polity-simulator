@@ -1,0 +1,201 @@
+______________________
+|Improving Simulation|
+|____________________|
+
+[Improving UI]______
+Map Modes
+- Default political, civilization, biome
+- Later maybe population,
+-
+Selecting polities
+- Ability to select polities and get data on them
+- Add diplomacy map mode. Shows belligerents, vassals, etc.
+-
+
+[Province-like polity behavior, Proper Vassal-Liege Relations]________________________________________
+Objective: Make polities around 20-30 tiles in size and make war based around subjugating other polities
+Basically make polities act like provinces and they adjust size rarely. Maybe have multiple levels of polities sometime later.
+
+To Do:
+Will need to allow lieges to attack from vassals' territory. Also need to remember size of polities before subjugation war.
+
+[Nomad Simulation, Maybe adding spread of civilization]_____________________________________
+Will need to separate nomad and farmer environments.
+Historically, the spread of pastoral nomad communities preceded the spread of farmer communities. Beyond the nomads were hunter-gatherer communities. Additionally, Nomads historically dominated the Eurasian Steppe and other steppe-like land in Eurasia. Only after the modern period began did their dominance in that area decline.
+Should first start by having simulation start with nomadic communities existing in the steppe biome tiles. Polities from both lands should interact somehow. Maybe the easiest strategy would be to just have nomadic communities attack the sedentary polities and make it impossible for sedentary polities to invade the steppe biome.
+Should make nomad polities behave differently from sedentary polities.
+- Mobility
+- Volatility
+- Expansive, rare steppe empires, that raid, harass, and even invade sedentary polities. Should fracture as well
+-
+
+[Theories of War]__________________________________
+War based on resources
+-War was most likely originally fought for the need for resources. The nomads' more natural need to raid to survive and the sedentary polities' need to defend could have exacerbated the need for resources. This caused states to form in order to pool resources and form large armies and defensive structures to defend against enemies, which come from concentrated locations and directions. Because there are rippling effects of raiding by the nomads across a sedentary civilization, the civilization would have the interest of pooling resources through large-scale systems like states. Nomads may have initially encouraged state formation, and fighting between sedentary polities could also occur, out of greed or even necessity
+-War could end up waged when there is misunderstanding of supply and demand in trade. Attackers could believe suppliers are withholding resources and charging for higher prices out of greed.
+
+*Things Tactics Depended on, Ancient Warfare*
+-The army's size
+-Unit types
+-Terrain
+-The weather
+-Positional advantage
+-Skill level
+-Individual battle experience
+-Individual morale
+-Armament (quantity and quality)
+
+<Egypt>
+Egypt was unified under one government. Their military concern was to keep enemies out. The surrounding land was inhabited by nomadic tribes who occasionally tried to raid or settle the valley. They built fortresses and outposts across the river. Small garrisons could prevent minor incursions, but if a large force was detected, a message was sent for the main army. Egyptian military was completely controlled by king.
+Soldiers were paid with a plot of land for their families. After fulfilling service, they were allow to retire to estates.
+
+[Adding Resources for Management Game]___________________
+
+
+
+[Implementing Trade and Economy]___________________
+Represent trade between polities or tiles
+-Should be simple enough to simulate, but intricate enough to be interesting and realistic
+-
+
+[Optimizing processing]____________________________
+Graphics - ~35ms
+- Maybe improve graphics, but there's only so much that can be optimized.
+  - Ideally drawing only the parts that change and keeping the image displayed would be optimal, but javascript canvas thickens the more you draw on top of it.
+Simulation - ~7ms
+- Rather than processing every polity tile, instead process border tiles of polity. Border tiles are currently the only place things change. Additionally, the part of the border where belligerents border is what is simulated.
+
+5/9/23
+Be able to differentiate between a conquest war and a subjugation war. Have polities wage war for different purposes. A war for conquest or a war for subjugation. When war is declared, initial borders are remembered. When a war ends, borders are modified. Polity chooses whether to wage a war of subjugation or conquest. For tiny polities, should be a war for conquest. Larger polities should be for subjugation.
+
+Make polities have crownland, their empire, and their subjects. The empire is a higher level part. The crownland is directly controlled territory, and the subjects are controlled polities. The subject lands are basically indirectly controlled land, but still sort of a part of the liege's territory. Somehow add limitations on polity directly controlled land. Encourage polities to have more vassals.
+
+Polities should be able to attack from their vassals' land. Maybe have direct tiles and total tiles for polity. Would be best to keep track of border tiles and only calculate attacking and border polities from there; is more efficient computationally.
+
+Rather than causing large polities to instantly collapse from their size, cause them to gradually decline. There should be momentum of the polity's strength. A polity can start off strong and the larger it gets, the stronger it gets, but when it reaches a certain size, its size then works against itself. The momentum can also encourage the polity to reach an equilibrium. Simulate state capacity. Momentum can be damaged from unexpected events. Currently just simulate by randomly damaging momentum.
+
+Concepts
+Small countries fight weaker countries and grow in size. The bigger the country gets, the more strain it receives. But growing in size can make the country stronger. Have entropy or decadence increase faster the bigger the polity is. Decadence can also decrease when a polity reaches a smaller size. The polity decreases in size based on decadence for now just through external factors, by getting attacked from other stronger polities.
+Remove chance of collapse.
+
+Current development system
+-Ultrasociality - Now just increases in random locations
+-Military technology - Now doesn't influence anything. Still simulated. Used to influence ethnocide, which was commented out.
+Military tech has chance of appearing in capital after successful battle
+Ultrasociality mutates in tiles with low chance of increase and high chance of decrease
+ The higher the ultsoc for a polity, the more likely they conquer a tile.
+ Conquering tile ethnocides conquered tile. Miltech increases chance of successful ethnocide
+
+Better development system
+Purpose:
+have a value that controls size of polities
+have value that determines how long large empires last
+
+
+-Land development
+-government institutions
+-military technology
+
+More mechanics to make world more dynamic
+Environment
+-geography (desert, steppe, taiga, temperate forest, mountains, etc)
+People
+-Population
+-Culture
+Economy
+-Wealth (Production, storage)
+-Trade (Movement of wealth and its production)
+  "Along with their famous purple dyes, Phoenician sailors traded textiles, wood, glass, metals, incense, papyrus, and carved ivory."
+  -Phoenicians also traded tin, silver, oil, pottery, etc.
+Colonization
+  -Surprisingly, even civilizations in the ancient era performed colonization. Notably: Phoenicia, Ancient Greece, Romans, China. There were also many non-sedentary groups that displaced or settled with other communities. The Indo-European migrations, Yayoi replacing Jomon, Scythians replaced by Turks, the Migration Period, etc.
+  -Would be best simulated once culture is implemented.
+
+Modern period
+-Capitalism
+-Large-scale Colonization, settler or trade
+-Industrialization
+-Imperialism
+
+
+Results are represented only through the political map. Should show results in different ways. Other map modes such as wealth map, civilization map, culture map, population map, military tech map, etc.
+
+
+==Process to modifying simulation==
+Add population to every tile. People are the primary agents that drive change in society.
+Systems should behave depending on the number of people. There should also be population capacity, comfortable quantity of population. Going over population capacity should cause famine and unrest. Unrest can dissipate through means of emigration or if a polity is advanced enough, raiding, conquest and exploitation, or colonization.
+The more people, the more production. More resources, greater military strength.
+Represent enslavement, for early civilization. Have a system that discourages slavery after modern period starts.
+
+Change warfare to have armies rather than a frontline. Early history, most polities had one army that fought another. Have polity have one army each. Strength of army is based on numerous things: for now just ability to tax populace and military technology. Ability to tax populace influences percentage of production polity can tax. Too much taxation can also cause unrest. Chance of military technology developing increases by amount of war polity wages, as well as polity's wealth. Later allow polities with weaker miltech to learn from their enemies.
+
+Polities should have the ability to tax and ability to govern. Polity may be able to govern many people but incapable of taxing as much. See China during 19th century. Ability to tax increases based on conflict, such as war. Ability to govern should also increase. Perhaps ability to govern increases both through population size and war. War encourages peacemaking, which means regulating the violence of as many people as possible. To replicate difference between China and Britain, somehow need to create gap between governing capacity and taxation. Maybe governing capacity actually increases as population increases, but population could still surpass governing capacity and an imbalance could occur
+Ability to tax and govern would increase both when war is waged. Governing is needed to have people to tax, and tax is needed to wage war. When there is peace, there should also be a decline. Decline technically occurs when governing capacity is overtaken by population size. Then unrest occurs. Unrest isn't as important as war in early time periods, so the polity doesn't react as rapidly to it. Then revolts happen and the polity begins to fall apart.
+
+From ToDoList, clean up:
+
+-Vassals
+Currently, just make vassals fully under control of polities. Implement levels of control later
+Lieges can use the land of vassals as though it were 100% theirs. Vassal polities are not allowed to wage war. Currently, vassals will exist solely to make polity decline more interesting.
+How vassalization occurs: A chance of when a polity conquers a weaker polity's capital.
+Warfare: When lieges wage war and conquer land, the land should go to the nearest vassal.
+Warfare should also change so that when a war starts, original boundaries are recorded. When a war is concluded, through surrender or capitulation, borders are changed. Also need to modify graphics to represent borders better. First just try, whenever drawing a tile, check right and bottom tiles, and if their polities are different from the main tile, draw a line between them to represent a border. Tiles also need another value. De-facto and de-jure polities. De-facto will determine the colors. de-jure will determine the original boundaries of the countries before the war.
+Controlling vassals should also be encouraged for lieges. Make it cheaper to control land that is controlled by a vassal.
+Lieges should be able to manage their vassals later.
+
+-Better disintegration
+Currently, push factor for overextention is only complete disintegration. Rather than having it so extreme, push factor should be in conquest. The bigger polity is when taking land, the harder it should get to take more land.
+Rather than having polities instantly decline through a lethal collapse,
+-Spread of Ultrasociality
+Currently, ultsoc is increased in warzones. When a neighbor tile conquers a tile, the conquered tile adopts the exact ultsoc of the conquering tile. That is weird. Ultsoc should grow in central regions, near the capital, the core territory. The more wars a polity fights, the more ultsoc behaviors it would force onto its population.
+-Warfare
+Should improve warfare. Warfare requires resources and the ability to extract the resources from the land. Ultsoc should represent the ability to efficiently use the resources the polity controls.
+For example, Qing China was extremely materially wealthy, but was defeated by colonial European powers. Most likely the Europeans were more efficient at using the resources they had available to them. But additionally Qing china was at its history when it was declining.
+
+
+==Things to add==
+
+
+==Miscellaneous==
+-Rather than cause polities to disintegrate into anarchy, have them collapse in more natural ways. For example, loosely controlled provinces breaking off, inheritances fracturing the realm, invasions breaking the polity apart, etc.
+-Maybe add population, wealth, culture. The bigger the population, the stronger the armies can be. Wealth can also be used to do diplomacy, such as tribute. The wealthier the state, the more attractive it should be to attack. Ultsoc will be the institutions that can extract from their resources better.
+-Have different forms of warfare. Rather than just conquest, also add raids.
+-Make wars start and end, have warfare more dynamic.
+
+==Scientific Article Stuff==
+-Optimize Chance calculation
+-Implement Ultrasociality and MilTech
+-Implement Agriculture Spread
+
+
+==FWHS Stuff==
+*-Implement Vassals
+-Add culture
+-Add multiple map modes/maps
+ -Political map,Culture map,UltSoc and MilTech map,Eventually government type map
+
+==My Stuff==
+-Player polity control
+ -First choose which countries to declare war on
+ -Will also need to make most sim mechanics more deterministic, less random-based
+  -Keep battles slightly random, but obviously favoring stronger polities
+  -Make warfare mechanic easier to understand for player. Make war between polities not based on tiles.
+  make warfare based on battles. Maybe also add armies that are created at capital tile, move to seige
+  enemy tiles, defender polity does its best to fight back enemy. Have warscore as well, to help polities decide
+  when to end a war.
+<Nomadic Polities>
+  May have to modify underlying code to implement nomads. Nomads will be more mobile than sedentary polities. Maybe allow them to pass over sedentary polities, especially small ones.
+
+==Code Improvement==
+<Improve simulating chance>
+Using randint and Math.random() should be used better. Current system is a weird mix of both. Make it possible for chance to just be added like 2% or 64% directly. Probably make function for it. Boolean is outputted based on the chance input.
+<Optimize Chance Calculation>
+  Rather than calculating chance for each and every polity, randomly choose a percentage of the polities that would roughly equal the chance. This is how chance in real life works as well.
+  For example, if a balloon's chance of popping is 50%, then roughly 50% of all balloons will pop.
+  This is more efficient the lower the chance is. Like a random polity collapse has a low chance. Most of the time calculating the chance of collapse for each and every polity does nothing. It is better to randomly choose a number of polities, depending on the chance, to collapse.
+<Calculating exclusively at borders>
+Most calculations occur at borders of polities. Just borders should be calculated
+
+==Added==
+-Make coefficients easier to set by creating constants
+-Vassals

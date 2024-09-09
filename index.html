@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #404040;
+        color: white;
+      }
+    }
+  </style>
+</head>
+<body id="body">
+  <canvas id="canvas" width="1200" height="600"></canvas><br>
+	
+  <div id="map-buttons">
+    <p style="display:inline">Map Modes:</p>
+    <input type="radio" id="biomeRadio" name="mapmode" onclick="setMapMode('biome')">
+    <label for="biomeRadio">Biome</label>
+    <input type="radio" id="politicalRadio" name="mapmode" onclick="setMapMode('political')" checked="checked">
+    <label for="politicalRadio">Political</label>
+    <input type="radio" id="populationRadio" name="mapmode" onclick="setMapMode('population')">
+    <label for="populationRadio">Population</label>
+  </div>
+	
+  <p id="inspect">Inspect</p>
+  <button id="pause-button" onclick="pauseToggler()">Pause</button>
+	<p style="display:inline">Speed:</p>
+    <input type="radio" id="gamespeed1" name="gamespeed" onclick="setGamespeed(1)" checked="checked">
+    <label for="gamespeed1">1</label>
+    <input type="radio" id="gamespeed2" name="gamespeed" onclick="setGamespeed(2)">
+    <label for="gamespeed2">2</label>
+    <input type="radio" id="gamespeed3" name="gamespeed" onclick="setGamespeed(3)">
+    <label for="gamespeed3">3</label>
+  <p id="date"></p>
+	<!-- <button id="clear-debug-btn" onclick="document.getElementById('debug-display').innerHTML= ''; -->
+		<!-- ">Clear Debug</button><br> -->
+  <!-- <p>Debug:</p> -->
+  <!-- <p id="debug-display"></p> -->
+	
+  <script src="lib/mylibrary.js"></script>
+	<script src="scripts/miscellaneous.js"></script>
+  <script src="scripts/tile.js"></script>
+  <script src="scripts/polity.js"></script>
+  <script src="scripts/player.js"></script>
+  <script src="rgbMapArray.js"></script>
+  <script src="scripts/world.js"></script>
+  <script src="scripts/user-input.js"></script>
+	<script src="scripts/simulation.js"></script>
+  <script src="scripts/graphics.js"></script>
+  <script src="scripts/main.js"></script>
+</body>

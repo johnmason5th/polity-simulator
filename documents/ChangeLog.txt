@@ -1,0 +1,27 @@
+Change Log
+
+5/11/23
+==Additions==
+Added ability to see diplomacy using inspection tool
+  When hovering over a polity, graphics highlights the polity itself in green, liege in yellow, vassals in orange, and enemies in red. Buggy, can cause crashes for some reason
+==Improvements==
+-Simulation updates 20 years per second (240 steps/sec) when not drawing graphics. Updates approximately 1 year per second when drawing graphics (12 steps/sec).
+-Simplified calculating border drawing
+Graphics
+-Made drawing faster. Initially drew ocean, which is a lot of nothing being redrawn every step. Instead just did it once and only drew the important tiles that changed. Sped up drawing by percentage of sea tiles. Significant when world is more ocean than land, meaning over doubled drawing speed if over half of world is ocean.
+
+==Bug Fixes==
+-Fixed vassal relation change mechanics. Sometimes polities believed a polity was their vassal, while the vassal was actually independent or vassalized by another polity. Used diplomacy inspection tool to help fix.
+-Fixed graphics. When only a certain biome was used to simulate polities, caused drawing to crash. Likely had to do with only checking water. Now checking if a border tile has a polity or not.
+
+5/20/23 - 6/4/23 (hadn't been logging changes)
+-Had added ability to graphically inspect polities, highlighting owned tiles, enemy tiles, vassals, lieges, fellow vassals, etc.
+-Also added ability to inspect tiles, putting data into an HTML paragraph element
+-Allowed polities to attack through their vassals
+
+6/5/23
+- Added ability to zoom in and out. Also ability to pan, but panning is buggy and basically broken, glitches out
+
+6/6/23
+-Restructured game loop from an IntervalTimer copied from the internet to using a function with a setTimeout inside it setting the setTimeout function to itself. Now can change speed of game and still pause it.
+-Made radios checked by default for better understanding by the user
